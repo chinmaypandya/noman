@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/noman/07_stop.png" width="340" alt="noman, sitting back in a chair beside books labeled System Design, Distributed Systems, Trade-offs, Keep it Simple, and Real Problems">
+<img src="assets/noman/07_stop.png" width="340" alt="noman holding up a hand: stop">
 
 # noman
 
