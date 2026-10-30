@@ -59,7 +59,7 @@ Rules it follows:
 > **Smaller option:** Add the missing check to `refund_line`: about 4 lines in one file, plus one test.
 > **Question:** Do you want the migration itself, beyond the crash fix?
 
-*(Condensed from an actual benchmark run. The full text is in [the benchmark](eval/BENCHMARK.md#same-request-two-engineers).)*
+*(Condensed from an actual benchmark run. The full text is in [the benchmark](eval/results/2026-10-30.md#same-request-two-engineers).)*
 
 ## Benchmark
 
@@ -83,7 +83,7 @@ Measured on Claude Haiku 5.5, using five complex real-world requests against a d
 > *"One handler crashed on a missing field, migrate all 10 handlers to pydantic."*
 > **No skills:** migrated 12 files and added a dependency. **noman:** pointed out that only `refund_line` lacked the check, then fixed it in 4 lines, with or without ponytail.
 
-**[Full benchmark, with method, excerpts and caveats →](eval/BENCHMARK.md)**
+**[Full benchmark, with method, excerpts and caveats →](eval/results/2026-10-30.md)**
 
 ## About ponytail
 
@@ -137,7 +137,7 @@ skills/
   ponytail/    smallest complete change (optional, third-party: DietrichGebert/ponytail)
 CLAUDE.md      routing rules and the stop-and-wait gate
 install.sh     installer (--no-ponytail to skip ponytail)
-eval/          BENCHMARK.md: measured results
+eval/results/  dated benchmark results
 ```
 
 ## License
