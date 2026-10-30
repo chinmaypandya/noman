@@ -1,0 +1,7 @@
+.DS_Store
+
+# benchmark harness, raw run logs and archived skills stay local
+docs/
+
+# local Claude Code config and this repo's own installed skill copies
+.claude/
