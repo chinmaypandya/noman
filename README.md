@@ -1,4 +1,4 @@
-# thousand_sunny
+# noman
 
 **noman**: a Claude Code skill that works like a pragmatic senior engineer, not a yes-man.
 Before it writes code, it checks the request against your codebase:
@@ -10,7 +10,7 @@ Before it writes code, it checks the request against your codebase:
 When the answer is no, it says so with evidence and offers the smaller option. When the answer is yes, it asks only what changes the outcome, then ships the smallest change that works.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/chinmaypandya/thousand_sunny/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/chinmaypandya/noman/main/install.sh | bash
 ```
 
 Run it from your project root. It installs noman together with [ponytail](#about-ponytail), or noman alone with `--no-ponytail`. [What it changes](#install).
@@ -97,10 +97,10 @@ From your project root:
 
 ```bash
 # noman + ponytail (recommended, the benchmarked setup)
-curl -fsSL https://raw.githubusercontent.com/chinmaypandya/thousand_sunny/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/chinmaypandya/noman/main/install.sh | bash
 
 # noman only
-curl -fsSL https://raw.githubusercontent.com/chinmaypandya/thousand_sunny/main/install.sh | bash -s -- --no-ponytail
+curl -fsSL https://raw.githubusercontent.com/chinmaypandya/noman/main/install.sh | bash -s -- --no-ponytail
 ```
 
 It will:
@@ -108,11 +108,11 @@ It will:
 | Target | If it exists | If not |
 |---|---|---|
 | `.claude/skills/noman` (and `ponytail` unless `--no-ponytail`) | Replaces just those; your other skills are untouched | Creates `.claude/skills/` |
-| `CLAUDE.md` | Adds the routing rules between `<!-- thousand_sunny:start/end -->` markers; your content is untouched | Creates it |
+| `CLAUDE.md` | Adds the routing rules between `<!-- noman:start/end -->` markers; your content is untouched | Creates it |
 
 Re-running updates the block in place and never duplicates it. `PONYTAIL=0` works the same way as `--no-ponytail`. Read [`install.sh`](install.sh) before piping it to a shell; it is about 80 lines.
 
-From a clone: `git clone https://github.com/chinmaypandya/thousand_sunny && cd your-project && bash ../thousand_sunny/install.sh [--no-ponytail]`
+From a clone: `git clone https://github.com/chinmaypandya/noman && cd your-project && bash ../noman/install.sh [--no-ponytail]`
 
 To remove: delete the skill folders and the marked block in `CLAUDE.md`.
 

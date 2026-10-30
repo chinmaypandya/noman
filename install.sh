@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# thousand_sunny installer. Run from your project root:
-#   curl -fsSL https://raw.githubusercontent.com/chinmaypandya/thousand_sunny/main/install.sh | bash
-#   curl -fsSL https://raw.githubusercontent.com/chinmaypandya/thousand_sunny/main/install.sh | bash -s -- --no-ponytail
+# noman installer. Run from your project root:
+#   curl -fsSL https://raw.githubusercontent.com/chinmaypandya/noman/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/chinmaypandya/noman/main/install.sh | bash -s -- --no-ponytail
 #
 # - Copies noman (and ponytail, unless --no-ponytail or PONYTAIL=0) into ./.claude/skills/
 # - Adds the routing rules to ./CLAUDE.md (creates it if missing)
 # - Safe to re-run: the CLAUDE.md block is replaced in place, never duplicated
 set -euo pipefail
 
-REPO="chinmaypandya/thousand_sunny"
-REF="${THOUSAND_SUNNY_REF:-main}"
-START="<!-- thousand_sunny:start -->"
-END="<!-- thousand_sunny:end -->"
+REPO="chinmaypandya/noman"
+REF="${NOMAN_REF:-main}"
+START="<!-- noman:start -->"
+END="<!-- noman:end -->"
 TARGET="$PWD"
 
 PONYTAIL="${PONYTAIL:-1}"
@@ -67,7 +67,7 @@ elif grep -qF "$START" "$claude_md" && grep -qF "$END" "$claude_md"; then
     !skip { print }
   ' "$claude_md" > "$tmp/new.md"
   cat "$tmp/new.md" > "$claude_md"
-  echo "  updated thousand_sunny block in CLAUDE.md"
+  echo "  updated noman block in CLAUDE.md"
 else
   { echo; cat "$block"; } >> "$claude_md"
   echo "  appended to existing CLAUDE.md"
