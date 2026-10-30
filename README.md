@@ -39,7 +39,6 @@ noman is the one in the room who has already read the code. He looks at your req
 
 > *"Do we actually need this?"*
 
-Most of the time the answer is yes, and he just does it, quietly and minimally. When the answer is no, you'll hear about it, with evidence.
 
 | | |
 |---|---|
