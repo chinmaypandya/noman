@@ -1,37 +1,28 @@
 #!/usr/bin/env bash
 # noman installer. Run from your project root:
 #   curl -fsSL https://raw.githubusercontent.com/chinmaypandya/noman/main/install.sh | bash
-#   curl -fsSL https://raw.githubusercontent.com/chinmaypandya/noman/main/install.sh | bash -s -- --no-ponytail
 #
-# - Copies noman (and ponytail, unless --no-ponytail or PONYTAIL=0) into ./.claude/skills/
-# - Adds the routing rules to ./CLAUDE.md (creates it if missing)
-# - Safe to re-run: the CLAUDE.md block is replaced in place, never duplicated
+# - Copies the noman skill into ./.claude/skills/noman (replacing an older copy)
+# - Touches nothing else: no CLAUDE.md, no other skills
 set -euo pipefail
 
 REPO="chinmaypandya/noman"
 REF="${NOMAN_REF:-main}"
-START="<!-- noman:start -->"
-END="<!-- noman:end -->"
 TARGET="$PWD"
 
-PONYTAIL="${PONYTAIL:-1}"
 for arg in "$@"; do
   case "$arg" in
-    --no-ponytail) PONYTAIL=0 ;;
-    --with-ponytail) PONYTAIL=1 ;;
-    -h|--help) sed -n '2,8p' "$0" 2>/dev/null || true; exit 0 ;;
-    *) echo "error: unknown option $arg (use --no-ponytail)" >&2; exit 1 ;;
+    -h|--help) sed -n '2,6p' "$0" 2>/dev/null || true; exit 0 ;;
+    *) echo "error: unknown option $arg" >&2; exit 1 ;;
   esac
 done
-SKILLS="noman"
-[ "$PONYTAIL" = "0" ] || SKILLS="noman ponytail"
 
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 
 # Use a local checkout when run from one; otherwise download.
 src=""
-if [ -n "${BASH_SOURCE[0]:-}" ] && [ -d "$(dirname "${BASH_SOURCE[0]}")/skills/noman" ] && [ -f "$(dirname "${BASH_SOURCE[0]}")/CLAUDE.md" ]; then
+if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "$(dirname "${BASH_SOURCE[0]}")/skills/noman/SKILL.md" ]; then
   src="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 else
   command -v curl >/dev/null || { echo "error: curl is required" >&2; exit 1; }
@@ -41,37 +32,16 @@ else
   src="$(find "$tmp" -mindepth 1 -maxdepth 1 -type d | head -n 1)"
 fi
 
-[ -f "$src/CLAUDE.md" ] || { echo "error: CLAUDE.md missing in source" >&2; exit 1; }
+[ -f "$src/skills/noman/SKILL.md" ] || { echo "error: skills/noman missing in source" >&2; exit 1; }
 
-# 1. Skills
 mkdir -p "$TARGET/.claude/skills"
-for name in $SKILLS; do
-  [ -d "$src/skills/$name" ] || { echo "error: skills/$name missing in source" >&2; exit 1; }
-  rm -rf "$TARGET/.claude/skills/$name"
-  cp -R "$src/skills/$name" "$TARGET/.claude/skills/$name"
-  echo "  skill: .claude/skills/$name"
-done
+rm -rf "$TARGET/.claude/skills/noman"
+cp -R "$src/skills/noman" "$TARGET/.claude/skills/noman"
+echo "  skill: .claude/skills/noman"
 
-# 2. CLAUDE.md: append, or replace our block if already installed
-block="$tmp/block.md"
-{ echo "$START"; cat "$src/CLAUDE.md"; echo; echo "$END"; } > "$block"
-
-claude_md="$TARGET/CLAUDE.md"
-if [ ! -f "$claude_md" ]; then
-  cp "$block" "$claude_md"
-  echo "  created CLAUDE.md"
-elif grep -qF "$START" "$claude_md" && grep -qF "$END" "$claude_md"; then
-  awk -v s="$START" -v e="$END" -v b="$block" '
-    $0==s { while ((getline line < b) > 0) print line; skip=1; next }
-    $0==e { skip=0; next }
-    !skip { print }
-  ' "$claude_md" > "$tmp/new.md"
-  cat "$tmp/new.md" > "$claude_md"
-  echo "  updated noman block in CLAUDE.md"
-else
-  { echo; cat "$block"; } >> "$claude_md"
-  echo "  appended to existing CLAUDE.md"
+if [ -f "$TARGET/CLAUDE.md" ] && grep -qF "<!-- noman:start -->" "$TARGET/CLAUDE.md"; then
+  echo "  note: CLAUDE.md still has an old noman block (<!-- noman:start/end -->). It's no longer needed; you can delete it."
 fi
 
 echo
-echo "Done: installed $SKILLS. Start Claude Code in this project and describe the work."
+echo "Done. Start Claude Code in this project and describe the work, or start a request with /noman."

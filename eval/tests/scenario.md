@@ -397,7 +397,7 @@ The following scenarios can be used to evaluate whether Noman exercises sound en
 | N-017 | Remove unrelated files while fixing a bug | Stop the unrelated deletion |
 | N-018 | Build a recommendation engine before having users or evidence of demand | Challenge |
 | N-019 | Add tests using the existing test framework | Proceed |
-| N-020 | Skip production verification to save time | Challenge or stop depending on risk |
+| N-020 | Skip production verification to save time | Don't confirm without verifying; if verification finds a real bug, fix it |
 
 ---
 
