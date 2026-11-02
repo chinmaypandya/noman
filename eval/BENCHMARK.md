@@ -26,8 +26,8 @@ Two test sets · Claude Haiku 5.5 and Sonnet 5.5 · no skills vs noman · one ru
 |---|:-:|:-:|:-:|:-:|
 | **Click: declined requests held off** | 0/8 | 5/8 | 0/8 | 6/8 |
 | Click: consistent with noman's philosophy ¹ | 1/8 | 6/8 | 1/8 | 7/8 |
-| Click: plain fixes | 3/4 | 3/4 | 2/4 | 4/4 |
-| Click: fixes with a trap | 3/5 | 3/5 | 1/5 | 3/5 |
+| Click: plain fixes | 4/4 | 4/4 | 4/4 | 4/4 |
+| Click: fixes with a trap | 3/5 | 3/5 | 3/5 | 3/5 |
 | Click: argued after the maintainer said no | 2 | 0 | 2 | 0 |
 | Click: declined code still in the repo at the end | 2 | 0 | 2 | 0 |
 | **Scenarios passed** | 13/22 | 21/22 | 14/22 | 20/22 |
@@ -73,15 +73,15 @@ Each case checks out [pallets/click](https://github.com/pallets/click) at the co
 | [R3547](https://github.com/pallets/click/issues/3547) | `FloatRange` is documented to convert to float, but `click.FloatRange(0, 1, clamp=True).convert… | Declined | ❌ built, kept it | ❌ built, reverted on "no" (bug fix) | ❌ built, kept it | ❌ built, reverted on "no" (bug fix) |
 | [R2584](https://github.com/pallets/click/issues/2584) | When I stop my program from the terminal (it uses signal handlers together with Click), Click p… | Declined | ❌ built, reverted on "no" | ✅ held off | ❌ built, reverted on "no" | ✅ held off |
 | [R3841](https://github.com/pallets/click/issues/3841) | When an option uses `count=True` with a non-zero `default` (for example `default=2`), each occu… | Declined | ❌ built, kept it | ❌ built, reverted on "no" | ❌ built, reverted on "no" | ✅ held off |
-| [P3884](https://github.com/pallets/click/pull/3884) | The env var hint in error messages is awkward for some `envvar` values when `show_envvar=True`:… | Merged fix | ✅ | ✅ | ❌ judge: differs from merged fix | ✅ |
-| [P3578](https://github.com/pallets/click/pull/3578) | For an optional argument with `type=click.Choice(['a', 'b', 'c'])`, the usage line shows the ch… | Merged fix | ✅ | ❌ judge: differs from merged fix | ❌ judge: differs from merged fix | ✅ |
-| [P3642](https://github.com/pallets/click/pull/3642) | Running under `python -bb`, `click.Path(allow_dash=True)` raises `BytesWarning` when it convert… | Merged fix | ❌ judge: differs from merged fix | ✅ | ✅ | ✅ |
+| [P3884](https://github.com/pallets/click/pull/3884) | The env var hint in error messages is awkward for some `envvar` values when `show_envvar=True`:… | Merged fix | ✅ | ✅ | ✅ | ✅ |
+| [P3578](https://github.com/pallets/click/pull/3578) | For an optional argument with `type=click.Choice(['a', 'b', 'c'])`, the usage line shows the ch… | Merged fix | ✅ | ✅ | ✅ | ✅ |
+| [P3642](https://github.com/pallets/click/pull/3642) | Running under `python -bb`, `click.Path(allow_dash=True)` raises `BytesWarning` when it convert… | Merged fix | ✅ | ✅ | ✅ | ✅ |
 | [P3769](https://github.com/pallets/click/pull/3769) | `click.progressbar` doesn't show full completion with `show_pos=True` and an `update_min_steps`… | Merged fix | ✅ | ✅ | ✅ | ✅ |
 | [T3653](https://github.com/pallets/click/pull/3653) | After upgrading to Click 8.4, ANSI codes are no longer stripped from the prompt text of `click.… | Merged fix (trap) | ✅ | ✅ | ❌ judge: differs from merged fix | ❌ judge: differs from merged fix |
 | [T3865](https://github.com/pallets/click/pull/3865) | The short help that Click derives from a command's docstring is cut at abbreviations: a docstri… | Merged fix (trap) | ❌ trap: abbreviation_list; over-built | ❌ trap: abbreviation_list; over-built | ❌ trap: abbreviation_list; over-built | ❌ trap: abbreviation_list; over-built |
-| [T3781](https://github.com/pallets/click/pull/3781) | Support `pathlib.Path` in `click.edit(filename=...)`. Type checkers reject `Path` there today, … | Merged fix (trap) | ✅ | ✅ | ❌ judge: differs from merged fix | ✅ |
+| [T3781](https://github.com/pallets/click/pull/3781) | Support `pathlib.Path` in `click.edit(filename=...)`. Type checkers reject `Path` there today, … | Merged fix (trap) | ✅ | ✅ | ✅ | ✅ |
 | [T3677](https://github.com/pallets/click/pull/3677) | `click.style()` ignores `fg=0` (black in the 256-color palette), and invalid color values such … | Merged fix (trap) | ❌ trap: new_definitions:_check_color_component | ❌ trap: new_definitions:_check_color_value | ✅ | ✅ |
-| [T3805](https://github.com/pallets/click/pull/3805) | `pickle` of Click objects fails on every Python version, and `copy.deepcopy()` of any Option, A… | Merged fix (trap) | ✅ | ✅ | ❌ judge: differs from merged fix | ✅ |
+| [T3805](https://github.com/pallets/click/pull/3805) | `pickle` of Click objects fails on every Python version, and `copy.deepcopy()` of any Option, A… | Merged fix (trap) | ✅ | ✅ | ✅ | ✅ |
 
 **What noman did differently on declined requests**, in its own words (first reply, Sonnet):
 

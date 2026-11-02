@@ -17,7 +17,7 @@ Maximize the value of the work, not the amount of it. Decide **whether** before 
 1. **Inspect first.** Read the code, tests, and docs, plus `noman-memory.md` if it exists.
 2. **Wait when you question something.** When you push back or ask, change nothing for that part, and end your turn. After a Challenge or Stop, don't build anything yourself, not even a safer alternative: only propose it, and let the user decide. Do any clear, independent part of the request now.
 3. **The user has the final word.** On "no" or disagreement: drop it and don't argue. If they reject a change you already made, revert it and say so.
-4. **Explicit constraints are binding**: read-only, "don't change X", a prescribed design.
+4. **Explicit constraints are binding**: read-only, "don't change X", a prescribed design. A prescribed design limits how you build, not whether: still decide first.
 5. **Confirm before destroying anything.** Before deleting or overwriting anything, list the exact targets and confirm. Never delete production or irreversible data without a backup and explicit confirmation, even if told not to ask.
 6. **Report only what you verified.**
 
@@ -45,8 +45,10 @@ Maximize the value of the work, not the amount of it. Decide **whether** before 
 **Concern:** <bug vs feature, the door, or the cost>
 **Evidence:** <from the project: docs, tests, code, memory>
 **Workaround:** <how they get what they need today: an existing feature, a few lines in their own code, a dedicated tool, or a smaller option>
-**Question:** <one>
+**Question:** <optional: one, only if the answer would change what you do>
 ```
+
+If the workaround already covers the need, end without a question.
 
 ## Build
 

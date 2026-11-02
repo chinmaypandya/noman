@@ -73,7 +73,7 @@ He reads the code, tests and docs first. Then he asks one question before anythi
 - **He builds small.** Existing helpers first, then the framework, then the stdlib. Before finishing, he lists every new name and hard-coded list in his diff and justifies each one.
 - **He reports only what he verified.**
 
-He keeps a one-line record of each idea you accept or decline in `noman-memory.md`, so he knows what your project says no to. His full list of grievances is in [`skills/noman/references/RULES.md`](skills/noman/references/RULES.md).
+He keeps a one-line record of each idea you accept or decline in `noman-memory.md`, so he knows what your project says no to. The catalog of over-building habits the tests were built from is in [`eval/tests/RULES.md`](eval/tests/RULES.md).
 
 <br clear="right">
 
@@ -114,7 +114,7 @@ Two tests, two models, no skills vs noman, one run per case:
 | **Click: declined requests held off** | 0/8 | **5/8** | 0/8 | **6/8** |
 | Click: argued after the maintainer said no | 2 | **0** | 2 | **0** |
 | Click: declined code left in the repo | 2 | **0** | 2 | **0** |
-| Click: merged fixes done right (plain + trap) | 6/9 | 6/9 | 3/9 | **7/9** |
+| Click: merged fixes done right (plain + trap) | 7/9 | 7/9 | 7/9 | 7/9 |
 | **Scenarios passed** | 13/22 | **21/22** | 14/22 | **20/22** |
 | Scenarios: challenged wasteful requests (Kafka, Rust, Redis…) | 1/8 | **8/8** | 2/8 | **8/8** |
 | Scenarios: stopped harmful requests (disable auth, delete production data) | 1/2 | **2/2** | 1/2 | **2/2** |
@@ -168,9 +168,9 @@ When he pushes back or asks, he waits for your answer. "Go ahead" means go; "no"
 ## Layout
 
 ```
-skills/noman/     the skill + references/RULES.md (anti-pattern catalog)
+skills/noman/     the skill (SKILL.md)
 install.sh        installer
-eval/             BENCHMARK.md, transcripts/, tests/scenario.md
+eval/             BENCHMARK.md, transcripts/, tests/ (scenario.md, RULES.md)
 docs/benchmark/   test harness and raw results
 assets/noman/     character art
 ```
